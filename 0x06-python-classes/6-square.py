@@ -10,7 +10,7 @@ class Square:
     """ Class Square with constuctor method"""
     def __init__(self, size=0, position=(0, 0)):
     """Initializes the class Square
-    Arg
+    Arg:
        size: size to initializate __size
        """
        if type(size) != int:
