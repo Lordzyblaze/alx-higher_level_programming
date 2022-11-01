@@ -1,2 +1,2 @@
--- script that prints the full description of the table first_table from the database hbtn_0c_0 in your MySQL server.
-SHOW CREATE TABLE first_table;
+--  script that lists the number of records with the same score in the table second_table of the database hbtn_0c_0 in your MySQL server.
+SELECT score, count(score) AS number FROM second_table GROUP BY score ORDER BY number DESC;
