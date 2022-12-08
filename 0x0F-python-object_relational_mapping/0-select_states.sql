@@ -1,38 +1,9 @@
-#!/usr/bin/python3
-"""script that lists all states from the database hbtn_0e_0_usa"""
-import MySQLdb
-from sys import argv
-
-
-def get__db():
-    """Takes arguments argv to list from database
-    Arguments:
-        argv[1]: mysql username
-        argv[2]: mysql password
-        argv[3]: database name
-    """
-    db = MySQLdb.connect(host="localhost",
-                         port=3306,
-                         user=argv[1],
-                         passwd=argv[2],
-                         db=argv[3],
-                         charset="utf8"
-																	                         )
-																	    # Getting a cursor in MySQLdb python
-																	    cur = db.cursor()
-
-																	    # Executing db queries
-																	    cur.execute("SELECT * FROM states ORDER BY id ASC")
-
-																	    # fetches all the rows of a query result
-																	    query_rows = cur.fetchall()
-
-																	    # Printing the result one in one
-																	    for row in query_rows:
-    print(row)
-
-																	    cur.close()
-																	    db.close()
-
-																	if __name__ == '__main__':
-																	    get__db()
+-- Create states table in hbtn_0e_0_usa with some data
+CREATE DATABASE IF NOT EXISTS hbtn_0e_0_usa;
+USE hbtn_0e_0_usa;
+CREATE TABLE IF NOT EXISTS states ( 
+    id INT NOT NULL AUTO_INCREMENT, 
+    name VARCHAR(256) NOT NULL,
+    PRIMARY KEY (id)
+);
+INSERT INTO states (name) VALUES ("California"), ("Arizona"), ("Texas"), ("New York"), ("Nevada");
