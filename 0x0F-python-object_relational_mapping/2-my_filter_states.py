@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 # Displays all values in the states table of the database hbtn_0e_0_usa
 # whose name matches that supplied as argument.
 # Usage: ./2-my_filter_states.py <mysql username> \
@@ -9,9 +10,10 @@ import sys
 import MySQLdb
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+    db = MySQLdb.connect(host="localhost", user="root", port=3306,
+                         passwd="1Lordzy@123", db="hbtn_0e_0_usa")
     c = db.cursor()
-    c.execute("SELECT * \
-                 FROM `states` \
-                WHERE BINARY `name` = '{}'".format(sys.argv[4]))
-    [print(state) for state in c.fetchall()]
+    c.execute("SELECT *  FROM states  WHERE name LIKE BINARY '{}' ORDER BY states.id ASC")
+    rows = c.fetchall()
+    for row in rows:
+        print(row)
